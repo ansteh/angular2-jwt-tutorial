@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 
+interface Credentials {
+  username: string,
+  password: string
+}
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -8,10 +13,14 @@ import { AuthService } from './auth.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
 
   }
 
+  onLogin(credentials: Credentials) {
+    console.log(credentials);
+    this.auth.login(credentials);
+  }
 }
